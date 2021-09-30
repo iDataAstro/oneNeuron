@@ -1,21 +1,24 @@
 from utils.model import Perceptron
 from utils.all_utils import *
 
-XOR = {
-    "x1": [0,0,1,1],
-    "x2": [0,1,0,1],
-    "y": [0,1,1,0],
-}
+def main(df_name, learning_rate, epochs, filename):
+    X, y, _ = prepare_data(df_name)
 
-X, y, _ = prepare_data(df_name=XOR)
+    model_OR = Perceptron(learning_rate=learning_rate, epochs=epochs)
+    model_OR.fit(X, y)
+    _ = model_OR.total_loss()
 
-LR = 0.3
-EPOCHS = 10
+    save_model(model_OR, filename)
+    save_plot(df_name, filename, model_OR)
 
-model_XOR = Perceptron(learning_rate=LR, epochs=EPOCHS)
-model_XOR.fit(X, y)
-_ = model_XOR.total_loss()
+if __name__ == '__main__':
+    XOR = {
+        "x1": [0,0,1,1],
+        "x2": [0,1,0,1],
+        "y": [0,1,1,0],
+    }
 
-filename = "xor_model"
-save_model(model_XOR, filename)
-save_plot(XOR, filename, model_XOR)
+    LR = 1e-4
+    EPOCHS = 10
+    
+    main(df_name=XOR, learning_rate=LR, epochs=EPOCHS, filename="xor_model")
