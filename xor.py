@@ -17,5 +17,5 @@ model_XOR.fit(X, y)
 _ = model_XOR.total_loss()
 
 filename = "xor_model"
-root_dir = "/Users/jatin/oneNeuron/oneNeuron"
-save_model(model_XOR, root_dir, filename)
+save_model(model_XOR, filename)
+save_plot(XOR, filename, model_XOR)

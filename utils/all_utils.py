@@ -7,8 +7,6 @@ import os
 
 plt.style.use('fivethirtyeight')
 
-root_dir = "/Users/jatin/oneNeuron/oneNeuron"
-
 def prepare_data(df_name):
   df = pd.DataFrame(df_name)
 
@@ -17,13 +15,10 @@ def prepare_data(df_name):
 
   return X, y, df
 
-def save_model(model, root_dir, filename):
-  os.chdir(root_dir)
+def save_model(model, filename):
   model_dir = "models"
-
   os.makedirs(model_dir, exist_ok=True)
   save_path = os.path.join(model_dir, filename)
-  
   joblib.dump(model, save_path)
 
 def save_plot(df_name, filename, model):
@@ -57,7 +52,6 @@ def save_plot(df_name, filename, model):
   _create_base_plot(df)
   _plot_decision_regions(X, y, model)
 
-  os.chdir(root_dir)
   plot_dir = "plots"
   os.makedirs(plot_dir, exist_ok=True)
   save_path = os.path.join(plot_dir, filename)

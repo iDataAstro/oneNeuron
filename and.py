@@ -17,5 +17,5 @@ model_AND.fit(X, y)
 _ = model_AND.total_loss()
 
 filename = "and_model"
-root_dir = "/Users/jatin/oneNeuron/oneNeuron"
-save_model(model_AND, root_dir, filename)
+save_model(model_AND, filename)
+save_plot(AND, filename, model_AND)
