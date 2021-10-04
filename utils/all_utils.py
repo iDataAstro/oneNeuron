@@ -8,6 +8,16 @@ import os
 plt.style.use('fivethirtyeight')
 
 def prepare_data(df_name):
+  """Function prepare independent and dependent data and also pandas dataframe.
+
+  Args:
+      df_name (Dictionary): Dictionary object
+
+  Returns:
+      X [independent variable]: Pandas series object
+      y [dependent variable]: Pandas series object
+      df [data frame]: Pandas dataframe object
+  """
   df = pd.DataFrame(df_name)
 
   X = df.drop("y", axis=1)
@@ -16,12 +26,25 @@ def prepare_data(df_name):
   return X, y, df
 
 def save_model(model, filename):
+  """This saves trained model.
+
+  Args:
+      model (python object): Trained model
+      filename (str): file name for mdoel
+  """
   model_dir = "models"
   os.makedirs(model_dir, exist_ok=True)
   save_path = os.path.join(model_dir, filename)
   joblib.dump(model, save_path)
 
 def save_plot(df_name, filename, model):
+  """Function for save plots
+
+  Args:
+      df_name (Dictionary): Dictionary object
+      filename (str): File name for prepared plot
+      model (python object): Trained model
+  """
   def _create_base_plot(df):
     df.plot(kind='scatter', x="x1", y="x2", c="y", s=100, cmap="winter")
     plt.axhline(y=0, color="black", linestyle="--", linewidth=1)
